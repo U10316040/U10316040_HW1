@@ -1,0 +1,30 @@
+public class SavingsAccount extends Account {
+	private boolean isOverBalance;
+	
+	SavingsAccount(){
+		super();
+	}
+	// use super constructor in class 
+	SavingsAccount(int id,double annualInterestRate,double balance){ 
+		super(id, annualInterestRate,balance);
+	}
+	
+	@Override
+	public void withdraw(double money){
+		if(getBalance() < money){
+			isOverBalance = true;
+		}
+		else{
+			setBalance(getBalance()-money); 
+		}
+		
+	}
+	
+	@Override
+	public String toString(){
+		if(isOverBalance)
+			return "Insufficient funds!\n" + super.toString();
+		else
+			return super.toString() + "\nTime of transaction: " + getDate();
+	}
+}
